@@ -5,28 +5,7 @@ import cookieParser from "cookie-parser";
 import connectDB from './config/mongodb.js';
 import authRouter from './routes/authRoutes.js';
 import userRouter from "./routes/userRoutes.js";
-//import noteRouter from './routes/noteRoutes.js';
-
-// const app = express();
-// const port = process.env.PORT || 4000
-// connectDB();
-
-// const allowedOrigins = ['http://localhost:5173']
-
-//app.use(cors({origin : allowedOrigins, credentials: true}))
-
-// // API Endpoints
-
-
-// app.listen(port, () => console.log(`Server started on Port: ${port}`));
-
-
-
-
-// import express from "express";
-// import 'dotenv/config';
-// import connectDB from "./config/mongodb.js";
-// import noteRouter from './routes/noteRoutes.js';
+import noteRouter from "./routes/noteRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -36,15 +15,10 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-// Test route
-app.get("/", (req, res) => {
-    res.send("Server is running & DB should be connected 🚀");
-});
-
 app.get('/', (req,res) => res.send("API working") )
 app.use('/api/auth', authRouter)    // /api/auth/register   || /api/auth/login  ...
 app.use('/api/user', userRouter)
-//app.use('/api/note', noteRouter)
+app.use('/api/note', noteRouter)
 
 // Start server
 app.listen(port, () => {

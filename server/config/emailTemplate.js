@@ -1,3 +1,5 @@
+// emailTemplate.js
+
 // Email Verification Template with OTP
 export const EMAIL_VERIFY_TEMPLATE = (userName, otp) => `
 <!DOCTYPE html>
@@ -73,7 +75,7 @@ export const EMAIL_VERIFY_TEMPLATE = (userName, otp) => `
                     <tr>
                         <td style="background-color: #f9fafb; padding: 30px; text-align: center; border-radius: 0 0 16px 16px;">
                             <p style="margin: 0 0 8px; font-size: 14px; color: #6b7280;">
-                                © ${new Date().getFullYear()} My Tasks. All rights reserved.
+                                © ${new Date().getFullYear()} MemoVault. All rights reserved.
                             </p>
                             <p style="margin: 0; font-size: 12px; color: #9ca3af;">
                                 This is an automated message, please do not reply to this email.
@@ -168,7 +170,127 @@ export const RESET_PASSWORD_TEMPLATE = (userName, otp) => `
                     <tr>
                         <td style="background-color: #f9fafb; padding: 30px; text-align: center; border-radius: 0 0 16px 16px;">
                             <p style="margin: 0 0 8px; font-size: 14px; color: #6b7280;">
-                                © ${new Date().getFullYear()} AUTH_MERN. All rights reserved.
+                                © ${new Date().getFullYear()} MemoVault. All rights reserved.
+                            </p>
+                            <p style="margin: 0; font-size: 12px; color: #9ca3af;">
+                                This is an automated message, please do not reply to this email.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+`;
+
+// Welcome Email Template (sent after registration)
+export const WELCOME_EMAIL_TEMPLATE = (userName) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MemoVault!</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f3f4f6;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f3f4f6;">
+        <tr>
+            <td align="center" style="padding: 40px 20px;">
+                <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 40px 30px; text-align: center; border-radius: 16px 16px 0 0;">
+                            <div style="width: 80px; height: 80px; background-color: rgba(255, 255, 255, 0.2); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </div>
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; line-height: 1.2;">Welcome to MemoVault! 🎉</h1>
+                        </td>
+                    </tr>
+
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <p style="margin: 0 0 16px; font-size: 18px; color: #1f2937; font-weight: 600;">
+                                Hi ${userName},
+                            </p>
+                            <p style="margin: 0 0 24px; font-size: 16px; color: #4b5563; line-height: 1.6;">
+                                Your account has been created successfully! We're thrilled to have you join MemoVault. Get ready to store, organize, and secure your important notes and memories!
+                            </p>
+
+                            <!-- Feature List -->
+                            <div style="margin: 32px 0;">
+                                <h2 style="margin: 0 0 16px; font-size: 20px; color: #1f2937; font-weight: 600;">What you can do with MemoVault:</h2>
+                                <table role="presentation" style="width: 100%;">
+                                    <tr>
+                                        <td style="padding: 12px 0;">
+                                            <p style="margin: 0; font-size: 16px; color: #4b5563;">
+                                                📝 Create and manage your notes
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px 0;">
+                                            <p style="margin: 0; font-size: 16px; color: #4b5563;">
+                                                ✏️ Edit and update memos on the go
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px 0;">
+                                            <p style="margin: 0; font-size: 16px; color: #4b5563;">
+                                                🗂️ Organize your thoughts and ideas
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px 0;">
+                                            <p style="margin: 0; font-size: 16px; color: #4b5563;">
+                                                🔒 Keep your notes private and secure
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px 0;">
+                                            <p style="margin: 0; font-size: 16px; color: #4b5563;">
+                                                🌐 Access from anywhere, anytime
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- Tip Box -->
+                            <div style="margin-top: 32px; padding: 16px; background-color: #dbeafe; border-left: 4px solid #3b82f6; border-radius: 8px;">
+                                <p style="margin: 0; font-size: 14px; color: #1e40af; line-height: 1.6;">
+                                    <strong>💡 Pro Tip:</strong> Verify your email to unlock all features and keep your account secure! Check your inbox for the verification email.
+                                </p>
+                            </div>
+
+                            <!-- CTA Section -->
+                            <div style="margin-top: 32px; text-align: center;">
+                                <p style="margin: 0 0 16px; font-size: 16px; color: #4b5563; line-height: 1.6;">
+                                    Ready to start creating your first memo?
+                                </p>
+                            </div>
+
+                            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+                                <p style="margin: 0; font-size: 14px; color: #6b7280; line-height: 1.6;">
+                                    Need help getting started? Feel free to reach out to our support team anytime. We're here to help!
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f9fafb; padding: 30px; text-align: center; border-radius: 0 0 16px 16px;">
+                            <p style="margin: 0 0 8px; font-size: 14px; color: #6b7280;">
+                                © ${new Date().getFullYear()} MemoVault. All rights reserved.
                             </p>
                             <p style="margin: 0; font-size: 12px; color: #9ca3af;">
                                 This is an automated message, please do not reply to this email.

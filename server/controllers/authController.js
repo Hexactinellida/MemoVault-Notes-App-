@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 import transporter from '../config/nodemailer.js';
-import { EMAIL_VERIFY_TEMPLATE, RESET_PASSWORD_TEMPLATE } from '../config/emailTemplate.js';
+import { EMAIL_VERIFY_TEMPLATE, RESET_PASSWORD_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from '../config/emailTemplate.js';
 
 
         // USER REGISTRATION CONTROLLER FUNCTION :
@@ -34,11 +34,11 @@ export const register = async (req,res) => {
             maxAge : 7 * 24 * 60 * 60 * 1000 // expiry time of token (7 days in milliseconds)
         });
             // for nodemailer
-         const mailOption = {
+          const mailOption = {
             from: process.env.SENDER_EMAIL,
             to: email,
-            subject: "Welcome to our site! ",
-            text: "Your account has been created successfully!"
+            subject: "Welcome to MemoVault!",
+            html: WELCOME_EMAIL_TEMPLATE(name)
         };
 
         await transporter.sendMail(mailOption);

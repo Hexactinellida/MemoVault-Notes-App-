@@ -17,4 +17,12 @@ noteRouter.get('/:id', userAuth, getNoteById);
 noteRouter.put('/:id', userAuth, updateNote);
 noteRouter.delete('/:id', userAuth, deleteNote);
 
+//CLOUDINARY
+
+import { upload } from '../config/cloudinary.js';
+import { uploadImage, deleteImage } from '../controllers/noteController.js';
+
+noteRouter.post('/:id/images', userAuth, upload.single('image'), uploadImage);
+noteRouter.delete('/:id/images', userAuth, deleteImage);
+
 export default noteRouter;

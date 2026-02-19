@@ -12,8 +12,9 @@ export const createNote = async (req, res) => {
       userId // if you want to link notes to users
     });
 
-    res.json({ success: true, note });
+    res.json({ success: true, message:"Note created Successfully", note});
   } catch (error) {
+    console.log(error); 
     res.json({ success: false, message: error.message });
   }
 };
@@ -83,3 +84,64 @@ export const deleteNote = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+
+// TO UPLOAD THE IMAGE:
+
+import cloudinary from '../config/cloudinary.js';
+
+// Upload image to note
+export const uploadImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const note = await noteModel.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          images: {
+            url: req.file.path,
+            publicId: req.file.filename,
+            filename: req.file.originalname
+          }
+        }
+      },
+      { new: true }
+    );
+
+    if (!note) {
+      return res.json({ success: false, message: "Note not found" });
+    }
+
+    res.json({ success: true, note });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// Delete image from note
+export const deleteImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { publicId } = req.body;
+
+    await cloudinary.uploader.destroy(publicId);
+
+    const note = await noteModel.findByIdAndUpdate(
+      id,
+      { $pull: { images: { publicId } } },
+      { new: true }
+    );
+
+    if (!note) {
+      return res.json({ success: false, message: "Note not found" });
+    }
+
+    res.json({ success: true, message: "Image deleted", note });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
