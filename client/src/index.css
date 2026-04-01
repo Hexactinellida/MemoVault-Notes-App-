@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+body {
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('/bg_img.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
