@@ -4,12 +4,6 @@ A full-stack notes application with image attachments, built with the MERN stack
 
 ---
 
-## Live Demo
-
-> _Coming soon / Add your deployed link here_
-
----
-
 ## Features
 
 - **Authentication** — Register, login, logout with JWT cookie-based sessions
