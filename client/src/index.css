@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 body {
   min-height: 100vh;
+  font-family: 'Quicksand', sans-serif;
 }
 
 #root {
@@ -11,5 +13,8 @@ body {
   background-image: url('/bg_img.png');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+}
+
+button, a, label {
+  transition: color 60ms linear, background-color 60ms linear !important;
 }

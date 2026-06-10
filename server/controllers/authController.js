@@ -27,11 +27,11 @@ export const register = async (req,res) => {
         
         // creates token for auth
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn : '7d'}); // id from the database (user collection) along with token expiry time
-        res.cookie('token', token, {    //response as a token, along with an object {}
-            httpOnly : true, //only http request can access this cookie
-            secure: process.env.NODE_ENV === 'production', // false for development (http) || true for production (https)
-            sameSite : process.env.NODE_ENV === 'production' ? 'none' : 'strict', // is strict while in development
-            maxAge : 7 * 24 * 60 * 60 * 1000 // expiry time of token (7 days in milliseconds)
+        res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'strict' → 'lax'
+        maxAge: 7 * 24 * 60 * 60 * 1000
         });
             // for nodemailer
           const mailOption = {
@@ -73,11 +73,11 @@ export const login = async (req, res) => {
         // token generation code is same as the registration one
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn : '7d'}); // id from the database (user collection) along with token expiry time
-        res.cookie('token', token, {    //response as a token, along with an object {}
-            httpOnly : true, //only http request can access this cookie
-            secure: process.env.NODE_ENV === 'production', // false for development (http) || true for production (https)
-            sameSite : process.env.NODE_ENV === 'production' ? 'none' : 'strict', // is strict while in development
-            maxAge : 7 * 24 * 60 * 60 * 1000 // expiry time of token (7 days in milliseconds)
+        res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'strict' → 'lax'
+        maxAge: 7 * 24 * 60 * 60 * 1000
         });
         return res.json({success:true, message: "Logged in Successfully"});
 
@@ -90,12 +90,13 @@ export const login = async (req, res) => {
             // USER LOGOUT CONTROLLER FUNCTION
 export const logout = async (req,res) => {
     try {
-        res.clearCookie('token', {
-            httpOnly : true, //only http request can access this cookie
-            secure: process.env.NODE_ENV === 'production', // false for development (http) || true for production (https)
-            sameSite : process.env.NODE_ENV === 'production' ? 'none' : 'strict', // is strict while in development
-        })
-        return res.json({success: true, message: "Logged Out"})
+        res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'strict' → 'lax'
+        maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+                return res.json({success: true, message: "Logged Out"})
     }
      catch(error) {
         return res.json({success: false, message: error.message});
