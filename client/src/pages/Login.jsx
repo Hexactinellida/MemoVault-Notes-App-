@@ -7,7 +7,7 @@ import { assets } from '../assets/assets'
 
 const Login = () => {
   const navigate = useNavigate()
-  const { setIsLoggedIn, setUser } = useAppContext()
+  const { setIsLoggedIn, fetchUser } = useAppContext()
   const [form, setForm] = useState({ email: '', password: '' })
 
   const handleChange = (e) => {
@@ -17,13 +17,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post('/api/auth/login', form)
-      if (data.success) {
-        setIsLoggedIn(true)
-        setUser(data.user)
-        toast.success('Logged in successfully')
-        navigate('/home')
-      } else {
+          const { data } = await axios.post('/api/auth/login', form)
+          if (data.success) {
+      await fetchUser()  // fetches complete user including isAccountVerified
+      toast.success('Logged in successfully')
+      navigate('/home')
+    } else {
         toast.error(data.message)
       }
     } catch (error) {

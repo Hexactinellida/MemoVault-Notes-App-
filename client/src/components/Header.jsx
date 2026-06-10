@@ -35,9 +35,9 @@ const Header = () => {
   }
 
   return (
-    <div className="flex items-center justify-between px-6 py-4 bg-white/60 backdrop-blur-sm shadow-sm">
+    <div className="flex items-center justify-between px-6 py-4 bg-white/90 shadow-sm">
       <Link to={isLoggedIn ? '/home' : '/'}>
-        <img src={assets.logo} alt="logo" className="h-7" />
+        <img src={assets.logo} alt="logo" className="h-8"/>
       </Link>
 
       <div className="flex items-center gap-4">
@@ -51,7 +51,6 @@ const Header = () => {
                 {user?.name?.charAt(0).toUpperCase()}
               </div>
               <span className="hidden sm:block">{user?.name}</span>
-              <img src={assets.arrow_icon} className="w-3 h-3 opacity-50" />
             </button>
 
             {dropdownOpen && (

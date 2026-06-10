@@ -8,6 +8,7 @@ export const AppContext = createContext()
 export const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [authLoading, setAuthLoading] = useState(true)  // ← add this
 
   const fetchUser = async () => {
     try {
@@ -15,9 +16,15 @@ export const AppContextProvider = ({ children }) => {
       if (data.success) {
         setUser(data.userData)
         setIsLoggedIn(true)
+      } else {
+        setUser(null)
+        setIsLoggedIn(false)
       }
     } catch (error) {
-      // not logged in
+      setUser(null)
+      setIsLoggedIn(false)
+    } finally {
+      setAuthLoading(false)  // ← always resolve loading
     }
   }
 
@@ -26,7 +33,7 @@ export const AppContextProvider = ({ children }) => {
   }, [])
 
   return (
-    <AppContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn, fetchUser }}>
+    <AppContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn, fetchUser, authLoading }}>
       {children}
     </AppContext.Provider>
   )
