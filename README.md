@@ -3,7 +3,15 @@
 A full-stack notes application with image attachments, built with the MERN stack. Users can create, edit, and delete personal notes — with support for uploading images per note, stored on Cloudinary. Authentication is handled via JWT cookies with optional email verification via OTP.
 
 ---
+<<<<<<< HEAD
 
+=======
+## Live Demo
+
+> _Coming soon / Add your deployed link here_
+
+---
+>>>>>>> main
 ## Features
 
 - **Authentication** — Register, login, logout with JWT cookie-based sessions
@@ -207,5 +215,8 @@ The app will be running at `http://localhost:5173`
 ---
 
 ## License
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 This project is open source and available under the [MIT License](LICENSE).
